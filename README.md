@@ -6,8 +6,6 @@ API frontend display fantasy game.
 
 ### Members
 - Tad Decker
-- Frank Contreras
-- Douglass Hill
 - Mo Ray
 - Gavin Hart
 - Indy Brown
