@@ -10,3 +10,6 @@ Mo is going to set up the Frontend and get the files setup.
 Indy and Tad are going to communicate and get everybody on the same page about the database.
 
 ## Week 5
+
+Indy is working with Tad to connect the database to the node endpoints
+Mo ray is setting up the frontend website.

@@ -1,45 +1,20 @@
 const express = require('express');
-const mongoose = require('mongoose');
-const bodyParser = require('body-parser');
+const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
+const PORT = 3000; // You can choose any other port if you like
 
-// Replace this with your MongoDB connection string
-const mongoURI = "mongodb+srv://IndyBrown:EsjIUrLo37JA0uSA@questgang.1znyjli.mongodb.net/";
+const MONGO_URL = 'mongodb://localhost:27017'; // Adjust this if your MongoDB server is on another host or port
+const DATABASE_NAME = 'sample'; // Change to your database name
+let db;
 
-mongoose.connect(mongoURI, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-}).then(() => {
-    console.log("Connected to MongoDB");
-}).catch(err => {
-    console.error("Error connecting to MongoDB", err);
-});
-
-app.use(bodyParser.json());
-
-const PORT = 3000;
-
-app.listen(PORT, () => {
-    console.log(`Server is running on port ${PORT}`);
-});
-
-
-const bookSchema = new mongoose.Schema({
-    title: String,
-    author: String,
-    publishedYear: Number
-});
-
-const Book = mongoose.model('Book', bookSchema);
-
-// Endpoint to get all books
-app.get('/books', async (req, res) => {
+app.get('/data', async (req, res) => {
     try {
-        const books = await Book.find();
-        res.json(books);
-    } catch (err) {
-        res.status(500).send("Error fetching books");
+        const collection = db.collection('your_collection_name'); // Change 'your_collection_name' to the collection you want to query
+        const data = await collection.find({}).toArray();
+        res.json(data);
+    } catch (error) {
+        res.status(500).json({ message: 'Internal Server Error' });
     }
 });
 
