@@ -12,4 +12,4 @@ Indy and Tad are going to communicate and get everybody on the same page about t
 ## Week 5
 
 Indy is working with Tad to connect the database to the node endpoints
-Mo ray is setting up the frontend website.
+Mo ray is setting up the frontend website. 

@@ -2,15 +2,15 @@ const express = require('express');
 const MongoClient = require('mongodb').MongoClient;
 
 const app = express();
-const PORT = 3000; // You can choose any other port if you like
+const PORT = 3002; // You can choose any other port if you like
 
-const MONGO_URL = 'mongodb://localhost:27017'; // Adjust this if your MongoDB server is on another host or port
-const DATABASE_NAME = 'sample'; // Change to your database name
+const MONGO_URL = 'mongodb+srv://IndyBrown:EsjIUrLo37JA0uSA@questgang.1znyjli.mongodb.net/'; // Adjust this if your MongoDB server is on another host or port
+const DATABASE_NAME = 'QuestGang'; // Change to your database name
 let db;
 
 app.get('/data', async (req, res) => {
     try {
-        const collection = db.collection('your_collection_name'); // Change 'your_collection_name' to the collection you want to query
+        const collection = db.collection('test/books'); // Change 'your_collection_name' to the collection you want to query
         const data = await collection.find({}).toArray();
         res.json(data);
     } catch (error) {
@@ -18,13 +18,13 @@ app.get('/data', async (req, res) => {
     }
 });
 
-// Endpoint to add a new book
-app.post('/books', async (req, res) => {
-    try {
-        const newBook = new Book(req.body);
-        const savedBook = await newBook.save();
-        res.json(savedBook);
-    } catch (err) {
-        res.status(500).send("Error saving book");
+MongoClient.connect(MONGO_URL, { useUnifiedTopology: true }, (err, client) => {
+    if (err) {
+        console.error('Failed to connect to MongoDB', err);
+        process.exit(1);
     }
+    db = client.db(DATABASE_NAME);
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}`);
+    });
 });
