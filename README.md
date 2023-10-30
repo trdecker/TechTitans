@@ -20,3 +20,4 @@ API frontend display fantasy game.
 -Parse line function(3 points)    
 -Built in command function (QUIT)(1-2 points)  
 -Desktop application(?)(3 points)  
+BIH
